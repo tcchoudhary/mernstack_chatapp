@@ -1,6 +1,12 @@
 import { AddIcon } from "@chakra-ui/icons";
-import { Box, Stack, Text } from "@chakra-ui/layout";
+import {
+  Box,
+  Stack,
+  Text,
+} from "@chakra-ui/layout";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { useToast } from "@chakra-ui/toast";
+
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getSender } from "../config/Chatlogics";
@@ -10,12 +16,10 @@ import { Button } from "@chakra-ui/react";
 import { ChatState } from "../Context/ChatProvider";
 
 const MyChats = ({ fetchAgain }) => {
+  const [tab, setTab] = useState("GGPL")
   const [loggedUser, setLoggedUser] = useState();
-
   const { selectedChat, setSelectedChat, user, chats, setChats } = ChatState();
-
   const toast = useToast();
-
   const fetchChats = async () => {
     // console.log(user._id);
     try {
@@ -38,7 +42,10 @@ const MyChats = ({ fetchAgain }) => {
       });
     }
   };
-
+  const handlechangetab = () => {
+    setTab("CEG")
+    setSelectedChat(false)
+  }
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfo")));
     fetchChats();
@@ -56,7 +63,7 @@ const MyChats = ({ fetchAgain }) => {
       borderRadius="lg"
       borderWidth="1px"
     >
-      <Box
+      {/* <Box
         pb={3}
         px={3}
         fontSize={{ base: "28px", md: "30px" }}
@@ -76,6 +83,14 @@ const MyChats = ({ fetchAgain }) => {
             New Group Chat
           </Button>
         </GroupChatModal>
+      </Box> */}
+      <Box bg="white" w="100%" mb="1em">
+        <Tabs isFitted variant="soft-rounded">
+          <TabList >
+            <Tab onClick={(() => setTab("GGPL"))}>GGPl</Tab>
+            <Tab onClick={handlechangetab}>CEG</Tab>
+          </TabList>
+        </Tabs>
       </Box>
       <Box
         display="flex"
@@ -87,38 +102,50 @@ const MyChats = ({ fetchAgain }) => {
         borderRadius="lg"
         overflowY="hidden"
       >
-        {chats ? (
-          <Stack overflowY="scroll">
-            {chats.map((chat) => (
-              <Box
-                onClick={() => setSelectedChat(chat)}
-                cursor="pointer"
-                bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
-                color={selectedChat === chat ? "white" : "black"}
-                px={3}
-                py={2}
-                borderRadius="lg"
-                key={chat._id}
-              >
-                <Text color="Blue">
-                  {!chat.isGroupChat
-                    ? getSender(loggedUser, chat.users)
-                    : chat.chatName}
-                </Text>
-                {chat.latestMessage && (
-                  <Text fontSize="xs">
-                    <b>{chat.latestMessage.sender.name} : </b>
-                    {chat.latestMessage.content.length > 50
-                      ? chat.latestMessage.content.substring(0, 51) + "..."
-                      : chat.latestMessage.content}
-                  </Text>
-                )}
-              </Box>
-            ))}
-          </Stack>
-        ) : (
-          <ChatLoading />
-        )}
+
+
+
+        {
+          tab === "GGPL" ? (
+            <>
+              {chats ? (
+                <Stack overflowY="scroll">
+                  {chats.map((chat) => (
+                    <Box
+                      onClick={() => setSelectedChat(chat)}
+                      cursor="pointer"
+                      bg={selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                      color={selectedChat === chat ? "white" : "black"}
+                      px={3}
+                      py={2}
+                      borderRadius="lg"
+                      key={chat._id}
+                    >
+                      <Text color="Blue">
+                        {!chat.isGroupChat
+                          ? getSender(loggedUser, chat.users)
+                          : chat.chatName}
+                      </Text>
+                      {chat.latestMessage && (
+                        <Text fontSize="xs">
+                          <b>{chat.latestMessage.sender.name} : </b>
+                          {chat.latestMessage.content.length > 50
+                            ? chat.latestMessage.content.substring(0, 51) + "..."
+                            : chat.latestMessage.content}
+                        </Text>
+                      )}
+                    </Box>
+                  ))}
+                </Stack>
+              ) : (
+                <ChatLoading />
+              )}
+            </>
+          ) : (
+            <ChatLoading />
+          )
+        }
+
       </Box>
     </Box>
   );

@@ -38,7 +38,7 @@ const SideDrawer = () => {
   const [loading, setLoading] = useState(false);
   const [loadingChat, setLoadingChat] = useState(false);
   const navigate = useNavigate()
-  const { user, setSelectedChat, chats, setChats, notification, setNotification } = ChatState()
+  const { user, setSelectedChat, chats, setChats, notification, setNotification, setProfileComponent } = ChatState()
   // console.log(notification, 'notification alert');
   const toast = useToast();
 
@@ -60,7 +60,6 @@ const SideDrawer = () => {
       });
       return;
     }
-
     try {
 
       const config = {
@@ -174,7 +173,7 @@ const SideDrawer = () => {
             </MenuButton>
             <MenuList>
               <ProfileModal user={user}>
-                <MenuItem>My Profile</MenuItem>
+                <MenuItem>My Profile</MenuItem>{" "}
               </ProfileModal>
               <MenuDivider />
               <MenuItem onClick={LogoutHandler}>Logout</MenuItem>
@@ -185,7 +184,7 @@ const SideDrawer = () => {
 
       <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay />
-        <DrawerContent onKeyDown={handleSearch}
+        <DrawerContent onChange={handleSearch}
         >
           <DrawerHeader borderBottomWidth="1px">Search Users</DrawerHeader>
           <DrawerBody>

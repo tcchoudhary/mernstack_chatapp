@@ -1,0 +1,45 @@
+
+
+
+
+.header{
+    background-color: rgb(64, 64, 163);
+    color: #ffff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.logo-icon-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logo img{
+    margin-right: 10px;
+}
+.icon{
+    display: flex;
+    align-items: center;
+}
+.icon p{
+    cursor: pointer;
+}
+.icon p.search{
+    margin-right: 10px;
+}
+
+.tab{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+

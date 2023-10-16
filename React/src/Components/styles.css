@@ -4,3 +4,32 @@
   overflow-y: scroll;
   scrollbar-width: none;
 }
+
+.app-btn{
+  background: #cd1f7c !important;
+  padding: 1.6rem 3rem !important;
+  border-radius: 5rem !important;
+  color: white !important;
+  font-weight: 200;
+  transition: transform 0.3s cubic-bezier(0.77, 0, 0.175, 1) !important;
+}
+
+.logo{
+  max-width: 200px;
+}
+#first-name{
+  position: relative;
+}
+.send-icon{
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  cursor: pointer;
+}
+.msg-input{
+  border: none !important;
+  outline: none !important;
+  padding: 0 10px;
+}

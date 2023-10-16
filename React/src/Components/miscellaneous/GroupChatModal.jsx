@@ -11,8 +11,10 @@ import {
   FormControl,
   Input,
   useToast,
+  IconButton,
   Box,
 } from "@chakra-ui/react";
+import { ViewIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import { useState } from "react";
 import { ChatState } from "../../Context/ChatProvider";
@@ -128,7 +130,12 @@ const GroupChatModal = ({ children }) => {
 
   return (
     <>
-      <span onClick={onOpen}>{children}</span>
+      {/* <span onClick={onOpen}>{children}</span> */}
+      {children ? (
+        <span onClick={onOpen}>{children}</span>
+      ) : (
+        <IconButton display={{ base: "flex" }} icon={<ViewIcon />} onClick={onOpen} />
+      )}
 
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />

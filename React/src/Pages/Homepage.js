@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import Login from "../Components/Authentication/Login";
+import Login from "../Components/Authentication/Singin";
 import Signup from "../Components/Authentication/Signup";
 const Homepage = () => {
   const navigate = useNavigate();
@@ -41,15 +41,15 @@ const Homepage = () => {
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>
-            <Tab>Sign Up</Tab>
+            {/* <Tab>Sign Up</Tab> */}
           </TabList>
           <TabPanels>
             <TabPanel>
               <Login />
             </TabPanel>
-            <TabPanel>
+            {/* <TabPanel>
               <Signup />
-            </TabPanel>
+            </TabPanel> */}
           </TabPanels>
         </Tabs>
       </Box>

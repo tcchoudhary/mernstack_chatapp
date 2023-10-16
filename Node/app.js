@@ -1,5 +1,5 @@
 //require express and initialise express for connecting the server
-require('dotenv').config();
+// require('dotenv').config();
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/UserRoute');
 const messageRoute = require('./routes/MessageRoute');
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname,'./front-end/build')))
 
 
 //set the port number absolute and static
-const port = process.env.PORT || 7000
+// const port = process.env.PORT || 7000
 
 //set the api route
 app.use("/", userRoutes);
